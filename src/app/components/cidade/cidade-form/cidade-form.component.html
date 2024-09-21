@@ -30,7 +30,7 @@
             <button mat-raised-button *ngIf="formGroup?.get('id')?.value" color="warn" (click)="excluir()" [disabled]="formGroup.invalid">
                 Excluir
             </button>
-            <button mat-raised-button routerLink="/cidades">
+            <button mat-raised-button (click)="cancelar()" routerLink="/cidades">
                 Cancelar
             </button>
         </mat-card-actions>

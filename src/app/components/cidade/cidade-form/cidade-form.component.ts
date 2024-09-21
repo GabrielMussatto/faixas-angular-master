@@ -92,4 +92,8 @@ export class CidadeFormComponent {
       }
     }
   }
+
+  cancelar(){
+    this.router.navigateByUrl('/cidades');
+  }
 }
