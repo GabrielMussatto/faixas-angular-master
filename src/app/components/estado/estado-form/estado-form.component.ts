@@ -90,4 +90,8 @@ export class EstadoFormComponent {
       }
     }
   }
+
+  cancelar(){
+    this.router.navigateByUrl('/estados');
+  }
 }
