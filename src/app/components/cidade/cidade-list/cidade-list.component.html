@@ -23,15 +23,15 @@
     </ng-container>
 
     <!-- Sigla Column -->
-    <ng-container matColumnDef="sigla">
-        <th mat-header-cell *matHeaderCellDef> Sigla do Estado </th>
-        <td mat-cell *matCellDef="let cidade"> {{cidade.estado.sigla}} </td>
+    <ng-container matColumnDef="estado">
+        <th mat-header-cell *matHeaderCellDef> Estado </th>
+        <td mat-cell *matCellDef="let cidade"> {{cidade.estado.nome + ' - ' + cidade.estado.sigla }} </td>
     </ng-container>
-    
+
     <!-- ação Column -->
     <ng-container matColumnDef="acao">
         <th mat-header-cell *matHeaderCellDef> Ação </th>
-        <td mat-cell *matCellDef="let cidade"> 
+        <td mat-cell *matCellDef="let cidade">
             <button mat-icon-button color="primary" routerLink="/cidades/edit/{{cidade.id}}">
                 <mat-icon>edit</mat-icon>
             </button>

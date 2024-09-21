@@ -26,9 +26,9 @@
     width: 100%;
 }
 
-.mat-column-sigla {
+.mat-column-estado {
     text-align: center;
-    width: 5em;
+    width: 20em;
 }
 
 .mat-column-acao {

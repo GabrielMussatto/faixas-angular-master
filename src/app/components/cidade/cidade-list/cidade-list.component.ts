@@ -16,7 +16,7 @@ import { RouterModule } from '@angular/router';
   styleUrl: './cidade-list.component.css'
 })
 export class CidadeListComponent implements OnInit{
-  displayedColumns: string[] = ['id', 'municipio', 'sigla', 'acao'];
+  displayedColumns: string[] = ['id', 'municipio', 'estado', 'acao'];
   cidades: Cidade[] = [];
 
   constructor(private cidadeService: CidadeService) { 
