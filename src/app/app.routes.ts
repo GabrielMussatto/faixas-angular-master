@@ -3,8 +3,9 @@ import { CidadeFormComponent } from './components/cidade/cidade-form/cidade-form
 import { CidadeListComponent } from './components/cidade/cidade-list/cidade-list.component';
 import { EstadoFormComponent } from './components/estado/estado-form/estado-form.component';
 import { EstadoListComponent } from './components/estado/estado-list/estado-list.component';
-import { estadoResolver } from './components/estado/estado-resolver';
-import { cidadeResolver } from './components/cidade/cidade-resolver';
+import { cidadeResolver } from './components/cidade/resolver/cidade.resolver';
+import { estadoResolver } from './components/estado/resolver/estado.resolver';
+
 
 
 export const routes: Routes = [
