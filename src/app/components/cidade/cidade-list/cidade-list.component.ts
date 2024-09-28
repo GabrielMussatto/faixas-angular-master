@@ -41,5 +41,5 @@ export class CidadeListComponent implements OnInit{
       });
     }
   }
-  
+
 }
