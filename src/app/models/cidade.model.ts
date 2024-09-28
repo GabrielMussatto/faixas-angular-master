@@ -1,5 +1,7 @@
+import { Estado } from "./estado.model";
+
 export class Cidade {
     id!: number;
     nome!: string;
-    idEstado!: number;
+    estado!: Estado;
 }
