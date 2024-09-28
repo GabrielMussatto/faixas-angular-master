@@ -12,7 +12,7 @@
                         O nome do Municipio é obrigatório.
                     </mat-error>
                 </mat-form-field>
-                <mat-form-field appearance="fill" class="full-width-input">
+                <!-- <mat-form-field appearance="fill" class="full-width-input">
                     <mat-label>Id Estado</mat-label>
                     <input matInput type="number" formControlName="idEstado">
                     <mat-error *ngIf="formGroup.get('idEstado')
@@ -20,46 +20,31 @@
                                     && formGroup.get('idEstado')?.invalid">
                         O id do Estado é obrigatório.
                     </mat-error>
+                </mat-form-field> -->
+                <mat-form-field appearance="fill" class="full-width-input">
+                    <mat-label>Estado</mat-label>
+                    <mat-select formControlName="estado">
+                        @for (estado of estados; track estado) {
+                        <mat-option [value]="estado">
+                            {{ estado.nome }}
+                        </mat-option>
+                        }
+                    </mat-select>
                 </mat-form-field>
             </form>
         </mat-card-content>
         <mat-card-actions>
-            <button mat-raised-button color="primary" (click)="salvar()" [disabled]="formGroup.invalid">
-                Salvar
-            </button>
-            <button mat-raised-button *ngIf="formGroup?.get('id')?.value" color="warn" (click)="excluir()" [disabled]="formGroup.invalid">
-                Excluir
-            </button>
             <button mat-raised-button (click)="cancelar()" routerLink="/cidades">
                 Cancelar
             </button>
+            <button mat-raised-button *ngIf="formGroup?.get('id')?.value" color="warn" (click)="excluir()"
+                [disabled]="formGroup.invalid">
+                Excluir
+            </button>
+            <button mat-raised-button color="primary" (click)="salvar()" [disabled]="formGroup.invalid">
+                Salvar
+            </button>
+            
         </mat-card-actions>
     </mat-card>
 </div>
-<!--
-<form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
-
-    <mat-form-field appearance="fill">
-        <mat-label>Nome</mat-label>
-        <input matInput type="text" formControlName="nome">
-        <mat-error *ngIf="formGroup.get('nome') && formGroup.get('nome')?.invalid
-                        && formGroup.get('nome')?.touched">
-            O nome da cidade é obrigatório.
-        </mat-error>
-    </mat-form-field>
-
-    
-    <mat-form-field appearance="fill">
-        <mat-label>IdEstado</mat-label>
-        <input matInput type="number" formControlName="idEstado">
-        <mat-error *ngIf="formGroup.get('idEstado') && formGroup.get('idEstado')?.invalid
-                        && formGroup.get('idEstado')?.touched">
-            O id do estado é obrigatório.
-        </mat-error>
-    </mat-form-field>
-    
-    
-    <button mat-raised-button color="primary" type="submit" 
-    [disabled]="formGroup.invalid" >Salvar</button>
-</form>
--->
