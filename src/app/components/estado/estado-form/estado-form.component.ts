@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, ValidationErrors, Validators } from '@angular/forms';
 import { EstadoService } from '../../../services/estado.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -29,8 +29,8 @@ export class EstadoFormComponent {
 
     this.formGroup = formBuilder.group({
       id: [(estado && estado.id) ? estado.id : null],
-      nome: [(estado && estado.nome) ? estado.nome : '', Validators.required],
-      sigla: [(estado && estado.sigla) ? estado.sigla : '', Validators.required]
+      nome: [(estado && estado.nome) ? estado.nome : '', Validators.compose([Validators.required, Validators.minLength(4)])],
+      sigla: [(estado && estado.sigla) ? estado.sigla : '', Validators.compose([Validators.required, Validators.minLength(2), Validators.maxLength(2)])]
     })
   }
   /*
@@ -49,6 +49,7 @@ export class EstadoFormComponent {
     }
   */
   salvar() {
+    this.formGroup.markAllAsTouched();//define todos os campos como tocados
     if (this.formGroup.valid) {
       const estado = this.formGroup.value;
       if (estado.id == null) {
@@ -94,4 +95,33 @@ export class EstadoFormComponent {
   cancelar(){
     this.router.navigateByUrl('/estados');
   }
+
+  getErrorMessage(controlName: string, errors: ValidationErrors | null | undefined): string {
+    if (!errors) {
+      return '';
+    }
+    
+    // Retorna a mensagem do erro específica
+    for (const errorName in errors) {
+      if (errors.hasOwnProperty(errorName) && this.errorMessage[controlName] && this.errorMessage[controlName][errorName]) {
+        return this.errorMessage[controlName][errorName];
+      }
+    }
+    
+    // Caso não encontre erro
+    return 'Campo inválido';
+  }
+
+  errorMessage: {[controlName: string]: {[errorName: string] : string}} = {
+    nome: {
+      required: 'O nome deve ser informado',
+      minlength: 'O nome deve ter no mínimo 4 caracteres',
+    },
+    sigla: {
+      required: 'A sigla deve ser informada',
+      minlength: 'A sigla deve ter no mínimo 2 caracteres',
+      maxlength: 'A sigla deve ter no maximo 2 caracteres'
+    }
+  }
+
 }

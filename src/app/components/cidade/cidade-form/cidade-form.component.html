@@ -6,10 +6,18 @@
                 <mat-form-field appearance="fill" class="full-width-input">
                     <mat-label>Municipio</mat-label>
                     <input matInput type="text" formControlName="nome">
-                    <mat-error *ngIf="formGroup.get('municipio')
-                                    && formGroup.get('municipio')?.invalid
-                                    && formGroup.get('municipio')?.invalid">
-                        O nome do Municipio é obrigatório.
+                    <mat-error *ngIf="formGroup.get('nome')
+                                    && formGroup.get('nome')?.invalid
+                                    && formGroup.get('nome')?.touched">
+                        @if (formGroup.get('nome')?.errors?.['required']) {
+                            <span>O nome é obrigatório</span>
+                        }
+                        @if (formGroup.get('nome')?.errors?.['minlength']) {
+                            <span>O nome deve conter no min 4 letras</span>
+                        }
+                        @if (formGroup.get('nome')?.errors?.['maxlength']) {
+                            <span>O nome deve conter no max 10 letras</span>
+                        }
                     </mat-error>
                 </mat-form-field>
                 <!-- <mat-form-field appearance="fill" class="full-width-input">
@@ -41,7 +49,7 @@
                 [disabled]="formGroup.invalid">
                 Excluir
             </button>
-            <button mat-raised-button color="primary" (click)="salvar()" [disabled]="formGroup.invalid">
+            <button mat-raised-button color="primary" (click)="salvar()" >
                 Salvar
             </button>
             

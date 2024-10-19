@@ -56,12 +56,14 @@ export class CidadeFormComponent implements OnInit{
 
     this.formGroup = this.formBuilder.group({
       id: [(cidade && cidade.id) ? cidade.id : null],
-      nome: [(cidade && cidade.nome) ? cidade.nome : '', Validators.required],
+      nome: [(cidade && cidade.nome) ? cidade.nome : null,  
+                      Validators.compose([Validators.required, Validators.minLength(4),  Validators.maxLength(10)])],
       estado: [estado, Validators.required],
     });
   }
 
   salvar() {
+    this.formGroup.markAllAsTouched();//define todos os campos como tocados
     if (this.formGroup.valid) {
       const cidade = this.formGroup.value;
       if (cidade.id == null) {

@@ -9,7 +9,18 @@
                     <mat-error *ngIf="formGroup.get('nome')
                                     && formGroup.get('nome')?.invalid
                                     && formGroup.get('nome')?.touched">
-                        O nome é obrigatório.
+                        {{getErrorMessage('nome', formGroup.get('nome')?.errors)}}
+                        <!--@if (formGroup.get('nome')?.errors?.['required']) {
+                            <span>O nome é obrigatório</span>
+                        }
+                        @if (formGroup.get('nome')?.errors?.['minLength']) {
+                            <span>O nome deve conter no min 4 letras</span>
+                        }
+                        @if (formGroup.get('nome')?.errors?.['maxLength']) {
+                            <span>O nome deve conter no max 10 letras</span>
+                        }  -->
+
+
                     </mat-error>
                 </mat-form-field>
                 <mat-form-field appearance="fill" class="full-width-input">
@@ -24,7 +35,7 @@
             </form>
         </mat-card-content>
         <mat-card-actions>
-            <button mat-raised-button color="primary" (click)="salvar()" [disabled]="formGroup.invalid">
+            <button mat-raised-button color="primary" (click)="salvar()">
                 Salvar
             </button>
             <button mat-raised-button *ngIf="formGroup?.get('id')?.value" color="warn" (click)="excluir()" [disabled]="formGroup.invalid">
