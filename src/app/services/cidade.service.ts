@@ -11,8 +11,23 @@ export class CidadeService {
 
   constructor(private httpClient: HttpClient) { }
 
-  findAll(): Observable<Cidade[]>{
-    return this.httpClient.get<Cidade[]>(this.baseUrl);
+  findAll(page?: number, pageSize?: number): Observable<Cidade[]>{
+    let params = {};
+
+    if (page !== undefined && pageSize !== undefined){
+      params = {
+        page: page.toString(),
+        pageSize: pageSize.toString()
+      }
+    }
+
+    console.log(params);
+
+    return this.httpClient.get<Cidade[]>(this.baseUrl, {params}); //(`${this.baseUrl}`, {params})
+  }
+
+  count(): Observable<number>{
+    return this.httpClient.get<number>(`${this.baseUrl}/count`);
   }
 
   findById(id: string): Observable<Cidade>{

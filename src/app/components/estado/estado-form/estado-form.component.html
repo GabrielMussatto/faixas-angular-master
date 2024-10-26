@@ -9,6 +9,7 @@
                     <mat-error *ngIf="formGroup.get('nome')
                                     && formGroup.get('nome')?.invalid
                                     && formGroup.get('nome')?.touched">
+                                    <!--erros de front end-->
                         {{getErrorMessage('nome', formGroup.get('nome')?.errors)}}
                         <!--@if (formGroup.get('nome')?.errors?.['required']) {
                             <span>O nome é obrigatório</span>
@@ -19,6 +20,11 @@
                         @if (formGroup.get('nome')?.errors?.['maxLength']) {
                             <span>O nome deve conter no max 10 letras</span>
                         }  -->
+
+                        <!--Erros do back-end-->
+                        @if (formGroup.get('nome')?.hasError('apiError')) {
+                            <span>{{formGroup.get('nome')?.getError?.('apiError')}}</span>
+                        }
 
 
                     </mat-error>
