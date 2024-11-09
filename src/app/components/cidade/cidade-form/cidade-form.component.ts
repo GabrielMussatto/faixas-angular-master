@@ -69,7 +69,7 @@ export class CidadeFormComponent implements OnInit{
       if (cidade.id == null) {
         this.cidadeService.insert(cidade).subscribe({
           next: (cidadeCadastrada) => {
-            this.router.navigateByUrl('/cidades');
+            this.router.navigateByUrl('/admin/cidades');
           },
           error: (errorResponse) => {
             console.log('Erro ao salvar a cidade', + JSON.stringify(errorResponse));
@@ -78,7 +78,7 @@ export class CidadeFormComponent implements OnInit{
       } else {
         this.cidadeService.update(cidade).subscribe({
           next: (cidadeAlterada) => {
-            this.router.navigateByUrl('/cidades');
+            this.router.navigateByUrl('/admin/cidades');
           },
           error: (err) => {
             console.log('Erro ao salvar o Municipio', + JSON.stringify(err));
@@ -95,7 +95,7 @@ export class CidadeFormComponent implements OnInit{
         if(confirm("Deseja realmente excluir esta cidade? Não será possivel reverter.")){
           this.cidadeService.delete(cidade).subscribe({
             next: () => {
-              this.router.navigateByUrl('/cidades');
+              this.router.navigateByUrl('/admin/cidades');
             },
             error: (err) => {
               console.log('Erro ao excluir o Municipio', + JSON.stringify(err));
@@ -107,6 +107,6 @@ export class CidadeFormComponent implements OnInit{
   }
 
   cancelar(){
-    this.router.navigateByUrl('/cidades');
+    this.router.navigateByUrl('/admin/cidades');
   }
 }
