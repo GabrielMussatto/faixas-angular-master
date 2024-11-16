@@ -6,6 +6,8 @@ import { EstadoListComponent } from './components/estado/estado-list/estado-list
 import { cidadeResolver } from './components/cidade/resolver/cidade.resolver';
 import { estadoResolver } from './components/estado/resolver/estado.resolver';
 import { AdminTemplateComponent } from './components/template/admin-template/admin-template.component';
+import { UserTemplateComponent } from './components/template/user-template/user-template.component';
+import { FaixaCardListComponent } from './components/faixa/faixa-card-list/faixa-card-list.component';
 
 
 
@@ -13,7 +15,7 @@ export const routes: Routes = [
     {
         path: 'admin',
         component: AdminTemplateComponent,
-        title: 'e-commerce',
+        title: 'administração',
         children: [
             { path: '', pathMatch: 'full', redirectTo: 'estados' },
 
@@ -23,6 +25,16 @@ export const routes: Routes = [
             { path: 'cidades', component: CidadeListComponent, title: 'Lista de Cidades' },
             { path: 'cidades/new', component: CidadeFormComponent, title: 'Nova Cidade' },
             { path: 'cidades/edit/:id', component: CidadeFormComponent, resolve: { cidade: cidadeResolver } },
+        ]
+    },
+    {
+        path: '',
+        component: UserTemplateComponent,
+        title: 'e-commerce',
+        children: [
+            { path: '', pathMatch: 'full', redirectTo: 'faixas' },
+
+            { path: 'faixas', component: FaixaCardListComponent, title: 'Lista de Faixas' }
         ]
     }
 ];
