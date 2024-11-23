@@ -9,6 +9,9 @@ import { AdminTemplateComponent } from './components/template/admin-template/adm
 import { UserTemplateComponent } from './components/template/user-template/user-template.component';
 import { FaixaCardListComponent } from './components/faixa/faixa-card-list/faixa-card-list.component';
 import { LoginComponent } from './components/login/login.component';
+import { FaixaListComponent } from './components/faixa/faixa-list/faixa-list.component';
+import { FaixaFormComponent } from './components/faixa/faixa-form/faixa-form.component';
+import { faixaResolver } from './components/faixa/resolver/faixa.resolver';
 
 
 
@@ -24,9 +27,14 @@ export const routes: Routes = [
             { path: 'estados', component: EstadoListComponent, title: 'Lista de Estados' },
             { path: 'estados/new', component: EstadoFormComponent, title: 'Novo Estado' },
             { path: 'estados/edit/:id', component: EstadoFormComponent, resolve: { estado: estadoResolver } },
+
             { path: 'cidades', component: CidadeListComponent, title: 'Lista de Cidades' },
             { path: 'cidades/new', component: CidadeFormComponent, title: 'Nova Cidade' },
             { path: 'cidades/edit/:id', component: CidadeFormComponent, resolve: { cidade: cidadeResolver } },
+            
+            { path: 'faixas', component: FaixaListComponent, title: 'Lista de Faixas' },
+            { path: 'faixas/new', component: FaixaFormComponent, title: 'Nova Faixa' },
+            { path: 'faixas/edit/:id', component: FaixaFormComponent, resolve: { faixa: faixaResolver } },
         ]
     },
     {
