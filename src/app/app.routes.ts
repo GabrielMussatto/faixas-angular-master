@@ -8,6 +8,7 @@ import { estadoResolver } from './components/estado/resolver/estado.resolver';
 import { AdminTemplateComponent } from './components/template/admin-template/admin-template.component';
 import { UserTemplateComponent } from './components/template/user-template/user-template.component';
 import { FaixaCardListComponent } from './components/faixa/faixa-card-list/faixa-card-list.component';
+import { LoginComponent } from './components/login/login.component';
 
 
 
@@ -18,7 +19,8 @@ export const routes: Routes = [
         title: 'administração',
         children: [
             { path: '', pathMatch: 'full', redirectTo: 'estados' },
-
+            { path: 'login', component: LoginComponent, title: 'Login'},
+            
             { path: 'estados', component: EstadoListComponent, title: 'Lista de Estados' },
             { path: 'estados/new', component: EstadoFormComponent, title: 'Novo Estado' },
             { path: 'estados/edit/:id', component: EstadoFormComponent, resolve: { estado: estadoResolver } },
@@ -34,7 +36,8 @@ export const routes: Routes = [
         children: [
             { path: '', pathMatch: 'full', redirectTo: 'faixas' },
 
-            { path: 'faixas', component: FaixaCardListComponent, title: 'Lista de Faixas' }
+            { path: 'faixas', component: FaixaCardListComponent, title: 'Lista de Faixas' },
+            { path: 'login', component: LoginComponent, title: 'Login'},
         ]
     }
 ];
