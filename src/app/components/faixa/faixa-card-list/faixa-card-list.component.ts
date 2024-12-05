@@ -4,8 +4,11 @@ import { FaixaService } from '../../../services/faixa.service';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardActions, MatCardContent, MatCardModule, MatCardTitle } from '@angular/material/card';
 import { NgFor } from '@angular/common';
+import { CarrinhoService } from '../../../services/carrinho.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 type Card = {
+  idFaixa: number;
   titulo: string;
   modalidade: string;
   preco: number;
@@ -23,7 +26,7 @@ export class FaixaCardListComponent implements OnInit{
   faixas: Faixa[] = [];
   cards = signal<Card[]>([]);
 
-  constructor(private faixaService: FaixaService){ }
+  constructor(private faixaService: FaixaService, private carrinhoService: CarrinhoService, private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.carregarFaixas();
@@ -41,6 +44,7 @@ export class FaixaCardListComponent implements OnInit{
     const cards: Card[] = [];
     this.faixas.forEach(faixa => {
       cards.push({
+        idFaixa: faixa.id,
         titulo: faixa.nome,
         modalidade: faixa.modalidade.label,
         preco: faixa.preco,
@@ -49,4 +53,23 @@ export class FaixaCardListComponent implements OnInit{
     });
     this.cards.set(cards);
   }
+
+  adicionarAoCarrinho(card: Card) {
+    this.showSnackbarTopPosition('Produto adicionado ao carrinho');
+    this.carrinhoService.adicionar({
+      id: card.idFaixa,
+      nome: card.titulo,
+      preco: card.preco,
+      quantidade: 1
+    })
+  }
+
+  showSnackbarTopPosition(content: any) {
+    this.snackBar.open(content, 'fechar', {
+      duration: 3000,
+      verticalPosition: "top",
+      horizontalPosition: "center"
+    });
+  }
+
 }
